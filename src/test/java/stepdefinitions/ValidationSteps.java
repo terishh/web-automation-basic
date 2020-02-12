@@ -15,10 +15,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class ValidationSteps {
 
-
-
-
-  @Given("I am at the {string} page")
+  @Given("I am on the {string} page")
   public void i_am_at_the_page(String page) {
       // Write code here that turns the phrase above into concrete actions
 
