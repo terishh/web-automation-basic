@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
-web-automation-java.iml
+web-automation-basic.iml
 target/
 build/
 .project
@@ -11,4 +11,3 @@ allure-results/
 allure-report/
 .DS_STORE
 .vscode
-*.iml
