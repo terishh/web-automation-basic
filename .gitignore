@@ -1,0 +1,14 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+web-automation-java.iml
+target/
+build/
+.project
+.factorypath
+.classpath
+.settings
+allure-results/
+allure-report/
+.DS_STORE
+.vscode
+*.iml
