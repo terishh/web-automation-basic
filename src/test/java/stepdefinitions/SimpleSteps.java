@@ -8,7 +8,6 @@ import static com.codeborne.selenide.Selenide.open;
 import org.assertj.core.api.AssertionsForClassTypes;
 
 import static general.Loading.waitUntilLoadingIsFinished;
-import static general.Navigation.basePage;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class SimpleSteps {
@@ -16,9 +15,6 @@ public class SimpleSteps {
     // private NewHomePage home = new NewHomePage();
 
     @When("I navigate to homepage")
-    public void i_navigate_to_homepage() {
-        open(basePage);
-    }
 
     @Then("home page is opened")
     public void home_page_is_opened() {
