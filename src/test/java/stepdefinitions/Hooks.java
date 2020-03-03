@@ -2,29 +2,23 @@ package stepdefinitions;
 
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import org.apache.log4j.BasicConfigurator;
 
 import static com.codeborne.selenide.Browsers.CHROME;
-import static com.codeborne.selenide.Selenide.close;
-import static com.codeborne.selenide.Selenide.open;
-import static general.Navigation.HOME_PAGE;
-
-
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 
 public class Hooks {
   @Before
-  public void launchBrowser(){
-    System.out.println("----------LAUNCHING BROWSER----------");
+  public void setUp(){
     System.setProperty("selenide.browser", CHROME);
-  }
-
-  @Before
-  public void openHomePage(){
-    open(HOME_PAGE);
+    open("");
   }
 
   @After
-  public void closeBrowser(){
-    System.out.println("----------CLOSING BROWSER----------");
-    close();
+  public void cleanUp(){
+    clearBrowserCache();
+    clearBrowserCookies();
+    clearBrowserLocalStorage();
   }
 }

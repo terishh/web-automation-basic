@@ -1,48 +1,111 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import general.PageManager;
-import java.lang.reflect.InvocationTargetException;
+import general.Loading;
+import general.Logger;
+import io.cucumber.datatable.DataTable;
 import java.util.List;
+import java.util.Map;
 
-import static com.codeborne.selenide.Selenide.$;
-import static general.Loading.waitUntilLoadingIsFinished;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class BasePageObject {
-  private final static Integer default_timeout = 10000;
-  private final static SelenideElement searchMenu = $("input[id=\"search_query_top\"]");
-  private final static SelenideElement submitButton = $("button[name=\"submit_search\"]");
+  // Elements
+  private final Integer defaultTimeout = 5;
+  private final Logger logger = new Logger();
 
-  public static void searchFor(String str){
-    searchMenu.clear();
-    searchMenu.sendKeys(str);
-    submitButton.click();
-    PageManager.setCurrentPage(PageManager.SEARCH_RESULTS_PAGE);
+  // General Methods
+  public void click(String element) {
+    element = capitalizeSecond(element);
+    info("Clicking '" + element +"'");
+    clicker(element);
+    navigate(element);
+  }
+  public void validatePage() {
+    info("Validating page: " + this.getClass());
+    assertThat(isDisplayed(getMainElement(), getTimeout())).isTrue();
+  }
+  public void validateData(String scope, DataTable dataTable) {
+    List<Map<String,String>> data = dataTable.asMaps();
+    info("Validating '" + scope + "' with data: " + data);
+    assertThat(validator("validate" + capitalize(scope), data)).isTrue();
+  }
+  public void validateFields(DataTable dataTable) {
+    info("Validating fields: " + dataTable.asList());
+    for(String element : dataTable.asList()){
+      assertThat(isDisplayed(getElement(capitalizeSecond(element)), getTimeout()));
+    }
+  }
+  public Boolean validator(String scope, List<Map<String,String>> data) {
+    switch (scope){
+      default: throw new Error("The given method 'validate" + capitalize(scope) + "' is undefined");
+    }
+  }
+  public Integer getTimeout(){
+    return defaultTimeout;
+  }
+  public SelenideElement getElement(String element) {
+    info("Getting '" + element + "'");
+    return elementCollector(element);
+  }
+  public SelenideElement elementCollector(String element) {
+    switch (element){
+      default: throw new Error("Given element '" + element + "' is undefined");
+    }
+  }
+  public void doAction(String scope, DataTable dataTable) {
+    List<Map<String,String>> data = dataTable.asMaps();
+    scope = capitalizeSecond(scope);
+    info("Calling method: '" + scope + "' with data: " + data);
+    callMethod(scope, data);
+  }
+  public void callMethod(String method, List<Map<String,String>> data) {
+    switch (method){
+      default: throw new Error("Given method '" + method + "' is undefined");
+    }
   }
 
-  public void validatePage(){
-    elementIsDisplayed(searchMenu);
+  // Methods - overridable
+  public void clicker(String element){
+    throw new Error(element + " is undefined in clicker for " + this.getClass());
+  }
+  public void navigate(String element){}
+  public SelenideElement getMainElement(){
+    throw new Error("'getMainElement' is undefined for " + this.getClass());
   }
 
-  public Integer get_timeout(){
-    return  default_timeout;
+  // Helper methods
+  public void info(String str){
+    logger.info(str);
   }
-
-  public void elementIsDisplayed(SelenideElement element){
-    waitUntilLoadingIsFinished(element, Condition.visible, get_timeout());
+  public void compare(List<String> expected, List<String> actual) {
+    logger.compare(expected, actual);
   }
-
-  public Boolean validateData(String element, List<String> data) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-    return (Boolean) this.getClass().getMethod("validate" + capitalize(element), List.class).invoke(this, data);
+  public void waitUntilDisplayed(SelenideElement elem, Integer time) {
+    info("Waiting for element to be displayed");
+    Loading.waitUntilDisplayed(elem, time);
   }
-
-  // PRIVATE METHODS --------------------
-  private static String capitalize(String words){
+  public String capitalize(String words){
+    words = words.toLowerCase().
+            replaceAll("[^a-zA-Z0-9]", " ").
+            replaceAll("\\s+"," ");
     StringBuilder capitalized = new StringBuilder();
     for(String word: words.split(" ")){
       capitalized.append(Character.toUpperCase(word.charAt(0))).append(word.substring(1)).append(" ");
     }
     return capitalized.toString().replaceAll("\\s+","");
+  }
+  public String capitalizeSecond(String words){
+    String str = capitalize(words);
+    return Character.toLowerCase(str.charAt(0)) + str.substring(1);
+  }
+  public Boolean isDisplayed(SelenideElement elem, Integer time){
+    if (Loading.isDisplayed(elem, time)){
+      info("Element found");
+      return true;
+    } else {
+      info("Element not found");
+      return false;
+    }
   }
 }

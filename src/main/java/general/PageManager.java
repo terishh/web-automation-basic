@@ -1,19 +1,18 @@
 package general;
 
-import pages.BasePageObject;
-import pages.HomePageObject;
-import pages.SearchResultsPageObject;
+import pages.*;
 
 public class PageManager {
   private static BasePageObject currentPage = null;
-  public static final BasePageObject HOME_PAGE = new HomePageObject();
-  public static final BasePageObject SEARCH_RESULTS_PAGE = new SearchResultsPageObject();
+  public static HomePageObject HOME_PAGE = new HomePageObject();
+  public static HomePageLoggedInObject HOME_PAGE_LOGGED_IN = new HomePageLoggedInObject();
+  public static SearchResultsPageObject SEARCH_RESULTS_PAGE = new SearchResultsPageObject();
+  public static LoginPageObject LOGIN_PAGE = new LoginPageObject();
 
   public static void setCurrentPage(BasePageObject page){
     currentPage = page;
-    currentPage.validatePage();
+    PageManager.getCurrentPage().validatePage();
   }
-
   public static BasePageObject getCurrentPage(){
     return currentPage;
   }
