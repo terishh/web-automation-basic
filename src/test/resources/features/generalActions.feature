@@ -1,10 +1,9 @@
-Feature: Test Example
+Feature: General actions with OWASP page
 
   Background:
     Given I navigate to "Home" page
     And   I click "Dismiss button"
 
-  @WIPx
   Scenario: Search for Apple
     When  I "search" with following data:
       | Keyword |
@@ -14,7 +13,6 @@ Feature: Test Example
       | Apple Pomace         |
       | Apple Juice (1000ml) |
 
-  @WIPx
   Scenario: Go to Login page
     When  I click "Account button"
     And   I click "Login button"
@@ -24,13 +22,11 @@ Feature: Test Example
       | Login button        |
       | Google Login button |
 
-  @WIPx
-  Scenario: Go to login page
+  Scenario: Login into page with demo credentials
     When I navigate to "Login" page
     And  I "login" with following data:
       | Email | Password |
       | demo  | demo     |
-
     And  I click "Account button"
     Then I see the following fields:
       | Orders & Payment button   |

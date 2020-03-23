@@ -7,13 +7,12 @@ import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class LoginPageObject extends BasePageObject {
-  // Elements
-  private final static SelenideElement googleLoginButton = $("button[aria-label*='Login with Google']");
+public class LoginPage extends BasePage {
+  // Variables
   private final static SelenideElement emailField = $("input[aria-label*='Text field for the login email']");
-  private final static SelenideElement passwordField = $("input[aria-label*='Text field for the login password']");
   private final static SelenideElement loginButton = $("button[aria-label='Login']");
-
+  private final static SelenideElement passwordField = $("input[aria-label*='Text field for the login password']");
+  private final static SelenideElement googleLoginButton = $("button[aria-label*='Login with Google']");
   // Methods
   public void login(List<Map<String, String>> data) {
     info("Logging in with following data " + data);

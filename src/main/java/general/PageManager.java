@@ -3,17 +3,18 @@ package general;
 import pages.*;
 
 public class PageManager {
-  private static BasePageObject currentPage = null;
-  public static HomePageObject HOME_PAGE = new HomePageObject();
-  public static HomePageLoggedInObject HOME_PAGE_LOGGED_IN = new HomePageLoggedInObject();
-  public static SearchResultsPageObject SEARCH_RESULTS_PAGE = new SearchResultsPageObject();
-  public static LoginPageObject LOGIN_PAGE = new LoginPageObject();
-
-  public static void setCurrentPage(BasePageObject page){
+  // Variables
+  private static BasePage currentPage = null;
+  public static HomePage HOME_PAGE = new HomePage();
+  public static HomePageLoggedIn HOME_PAGE_LOGGED_IN = new HomePageLoggedIn();
+  public static SearchResultsPage SEARCH_RESULTS_PAGE = new SearchResultsPage();
+  public static LoginPage LOGIN_PAGE = new LoginPage();
+  // Methods
+  public static void setCurrentPage(BasePage page){
     currentPage = page;
     PageManager.getCurrentPage().validatePage();
   }
-  public static BasePageObject getCurrentPage(){
+  public static BasePage getCurrentPage(){
     return currentPage;
   }
 }

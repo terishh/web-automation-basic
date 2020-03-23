@@ -8,15 +8,14 @@ import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class HomePageObject extends BasePageObject {
-  // Elements
+public class HomePage extends BasePage {
+  // Variables
   private final SelenideElement title = $("div[class*=\"heading\"] div[class='ng-star-inserted']");
   private final SelenideElement loginButton = $("button[aria-label*='Go to login page']");
   private final SelenideElement searchField = $("input[class*=\"mat-input-element\"]");
   private final SelenideElement searchButton = $("mat-search-bar[aria-label*=\"Click to search\"]");
   private final SelenideElement accountButton = $("button[aria-label*='Show/hide account menu']");
   private final SelenideElement dismissButton = $("button[aria-label*=\"Close Welcome Banner\"]");
-
   // Methods
   public void search(String string) {
     info("Searching for '" + string + "'");

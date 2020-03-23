@@ -9,17 +9,27 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BasePageObject {
-  // Elements
+public class BasePage {
+  // Variables
   private final Integer defaultTimeout = 5;
   private final Logger logger = new Logger();
-
-  // General Methods
+  // General methods
   public void click(String element) {
     element = capitalizeSecond(element);
     info("Clicking '" + element +"'");
     clicker(element);
     navigate(element);
+  }
+  public void doAction(String scope, DataTable dataTable) {
+    List<Map<String,String>> data = dataTable.asMaps();
+    scope = capitalizeSecond(scope);
+    info("Calling method: '" + scope + "' with data: " + data);
+    callMethod(scope, data);
+  }
+  public void callMethod(String method, List<Map<String,String>> data) {
+    switch (method){
+      default: throw new Error("Given method '" + method + "' is undefined");
+    }
   }
   public void validatePage() {
     info("Validating page: " + this.getClass());
@@ -53,19 +63,7 @@ public class BasePageObject {
       default: throw new Error("Given element '" + element + "' is undefined");
     }
   }
-  public void doAction(String scope, DataTable dataTable) {
-    List<Map<String,String>> data = dataTable.asMaps();
-    scope = capitalizeSecond(scope);
-    info("Calling method: '" + scope + "' with data: " + data);
-    callMethod(scope, data);
-  }
-  public void callMethod(String method, List<Map<String,String>> data) {
-    switch (method){
-      default: throw new Error("Given method '" + method + "' is undefined");
-    }
-  }
-
-  // Methods - overridable
+  // Overridable methods
   public void clicker(String element){
     throw new Error(element + " is undefined in clicker for " + this.getClass());
   }
@@ -73,17 +71,12 @@ public class BasePageObject {
   public SelenideElement getMainElement(){
     throw new Error("'getMainElement' is undefined for " + this.getClass());
   }
-
   // Helper methods
   public void info(String str){
     logger.info(str);
   }
   public void compare(List<String> expected, List<String> actual) {
     logger.compare(expected, actual);
-  }
-  public void waitUntilDisplayed(SelenideElement elem, Integer time) {
-    info("Waiting for element to be displayed");
-    Loading.waitUntilDisplayed(elem, time);
   }
   public String capitalize(String words){
     words = words.toLowerCase().

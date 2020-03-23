@@ -9,11 +9,10 @@ import java.util.Map;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class SearchResultsPageObject extends BasePageObject {
-  // Elements
+public class SearchResultsPage extends BasePage {
+  // Variables
   private final static SelenideElement resultsHeading = $("app-search-result span[id*=\"searchValue\"]");
   private final static ElementsCollection searchResultsTitles = $$("div[class*=\"item-name\"]");
-
   // Methods
   public Boolean validator(String scope, List<Map<String,String>> data) {
     switch (scope){

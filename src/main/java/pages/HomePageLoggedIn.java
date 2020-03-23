@@ -6,14 +6,13 @@ import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class HomePageLoggedInObject extends HomePageObject {
-  // Elements
+public class HomePageLoggedIn extends HomePage {
+  // Variables
   private final SelenideElement logoutButton = $("button[aria-label='Logout']");
   private final SelenideElement userProfileButton = $("button[aria-label='Go to user profile'] span");
   private final SelenideElement shoppingCartButton = $("button[aria-label='Show the shopping cart']");
   private final SelenideElement ordersPaymentButton = $("button[aria-label='Show Orders and Payment Menu']");
   private final SelenideElement privacySecurityButton = $("button[aria-label='Show Privacy and Security Menu']");
-
   // Methods
   public Boolean validator(String scope, List<Map<String,String>> data) {
     switch (scope){

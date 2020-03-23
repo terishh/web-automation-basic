@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 public class Logger {
+  // Variables
   private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
   private final String INFO = "[INFO]";
-
   // Methods
   public void info(String str){
     output(infoContent(str));
@@ -15,7 +15,6 @@ public class Logger {
   public void compare(List<String> expected, List<String> actual) {
     output(compareContent(expected, actual));
   }
-
   // Private Methods
   private void output(String str){
     System.out.println(str);
