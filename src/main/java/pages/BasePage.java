@@ -20,35 +20,20 @@ public class BasePage {
     clicker(element);
     navigate(element);
   }
-  public void doAction(String scope, DataTable dataTable) {
-    List<Map<String,String>> data = dataTable.asMaps();
-    scope = capitalizeSecond(scope);
-    info("Calling method: '" + scope + "' with data: " + data);
-    callMethod(scope, data);
+  public void doAction(String action, DataTable dataTable) {
+    throw new Error(action + " is undefined");
   }
-  public void callMethod(String method, List<Map<String,String>> data) {
-    switch (method){
-      default: throw new Error("Given method '" + method + "' is undefined");
-    }
+  public void doAction(String action, String data){
+    throw new Error(action + " is undefined");
   }
   public void validatePage() {
     info("Validating page: " + this.getClass());
     assertThat(isDisplayed(getMainElement(), getTimeout())).isTrue();
   }
-  public void validateData(String scope, DataTable dataTable) {
-    List<Map<String,String>> data = dataTable.asMaps();
-    info("Validating '" + scope + "' with data: " + data);
-    assertThat(validator("validate" + capitalize(scope), data)).isTrue();
-  }
   public void validateFields(DataTable dataTable) {
     info("Validating fields: " + dataTable.asList());
     for(String element : dataTable.asList()){
       assertThat(isDisplayed(getElement(capitalizeSecond(element)), getTimeout()));
-    }
-  }
-  public Boolean validator(String scope, List<Map<String,String>> data) {
-    switch (scope){
-      default: throw new Error("The given method 'validate" + capitalize(scope) + "' is undefined");
     }
   }
   public Integer getTimeout(){
@@ -62,6 +47,10 @@ public class BasePage {
     switch (element){
       default: throw new Error("Given element '" + element + "' is undefined");
     }
+  }
+
+  public void clickText(String text){
+
   }
   // Overridable methods
   public void clicker(String element){

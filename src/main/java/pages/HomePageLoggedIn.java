@@ -14,12 +14,6 @@ public class HomePageLoggedIn extends HomePage {
   private final SelenideElement ordersPaymentButton = $("button[aria-label='Show Orders and Payment Menu']");
   private final SelenideElement privacySecurityButton = $("button[aria-label='Show Privacy and Security Menu']");
   // Methods
-  public Boolean validator(String scope, List<Map<String,String>> data) {
-    switch (scope){
-      case "validateUserProfileButton": return validateUserProfileButton(data);
-      default                         : return super.validator(scope, data);
-    }
-  }
   public Boolean validateUserProfileButton(List<Map<String,String>> data) {
     return data.get(0).get("Email").equals(userProfileButton.text());
   }

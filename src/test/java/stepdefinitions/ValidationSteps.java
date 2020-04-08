@@ -5,13 +5,13 @@ import general.PageManager;
 import io.cucumber.datatable.DataTable;
 
 public class ValidationSteps {
-  @Then("I see {string} with the following data:")
-  public void i_see_the_with_the_following_data(String scope, DataTable dataTable) {
-    PageManager.getCurrentPage().validateData(scope, dataTable);
-  }
-
   @Then("I see the following fields:")
   public void i_see_the_following_fields(DataTable dataTable) {
     PageManager.getCurrentPage().validateFields(dataTable);
+  }
+
+  @Then("I see {string} with following data:")
+  public void iSeeWithFollowingData(String scope, DataTable dataTable) {
+    PageManager.getCurrentPage().doAction("validate " + scope, dataTable);
   }
 }

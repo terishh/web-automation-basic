@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class HomePage extends BasePage {
   // Variables
@@ -17,7 +18,14 @@ public class HomePage extends BasePage {
   private final SelenideElement accountButton = $("button[aria-label*='Show/hide account menu']");
   private final SelenideElement dismissButton = $("button[aria-label*=\"Close Welcome Banner\"]");
   // Methods
-  public void search(String string) {
+  @Override
+  public void doAction(String action, String data) {
+    switch(capitalizeSecond(action)){
+      case "searchFor": searchFor(data); break;
+      default         : super.doAction(action, data);
+    }
+  }
+  public void searchFor(String string) {
     info("Searching for '" + string + "'");
     searchButton.click();
     searchField.sendKeys(string);
@@ -30,11 +38,6 @@ public class HomePage extends BasePage {
   public void navigate(String element) {
     switch (element){
       case "loginButton": PageManager.setCurrentPage(PageManager.LOGIN_PAGE);
-    }
-  }
-  public void callMethod(String scope, List<Map<String, String>> data) {
-    switch(scope){
-      case "search": search(data.get(0).get("Keyword"));
     }
   }
   public SelenideElement getMainElement(){

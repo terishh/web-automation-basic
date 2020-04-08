@@ -21,12 +21,6 @@ public class LoginPage extends BasePage {
     loginButton.click();
     PageManager.setCurrentPage(PageManager.HOME_PAGE_LOGGED_IN);
   }
-  public void callMethod(String scope, List<Map<String, String>> data) {
-    switch (scope){
-      case "login": login(data); break;
-      default     : super.callMethod(scope, data);
-    }
-  }
   public SelenideElement getMainElement() {
     return googleLoginButton;
   }

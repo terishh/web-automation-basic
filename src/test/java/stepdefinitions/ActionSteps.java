@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import general.PageManager;
@@ -21,5 +22,15 @@ public class ActionSteps {
   @When("I {string} with following data:")
   public void i_with_following_data(String scope, DataTable dataTable) {
     PageManager.getCurrentPage().doAction(scope, dataTable);
+  }
+
+  @When("I search for {string}")
+  public void iSearchFor(String item) {
+    PageManager.getCurrentPage().doAction("search for", item);
+  }
+
+  @And("I click text {string}")
+  public void iClickText(String text) {
+    PageManager.getCurrentPage().clickText;
   }
 }
