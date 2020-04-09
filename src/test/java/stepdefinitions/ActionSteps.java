@@ -31,6 +31,6 @@ public class ActionSteps {
 
   @And("I click text {string}")
   public void iClickText(String text) {
-    PageManager.getCurrentPage().clickText;
+    PageManager.getCurrentPage().clickText(text);
   }
 }

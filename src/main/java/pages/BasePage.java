@@ -7,6 +7,8 @@ import io.cucumber.datatable.DataTable;
 import java.util.List;
 import java.util.Map;
 
+import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selenide.$;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BasePage {
@@ -30,6 +32,18 @@ public class BasePage {
     info("Validating page: " + this.getClass());
     assertThat(isDisplayed(getMainElement(), getTimeout())).isTrue();
   }
+
+
+  public void clickText(String text){
+    getTextElement(text).click();
+  }
+  public Boolean isTextVisible(String text) { return getTextElement(text).isDisplayed(); }
+  public SelenideElement getTextElement(String text){
+    return $(byXpath("//*[contains(text(), '" + text + "')]"));
+  }
+
+
+
   public void validateFields(DataTable dataTable) {
     info("Validating fields: " + dataTable.asList());
     for(String element : dataTable.asList()){
@@ -47,10 +61,6 @@ public class BasePage {
     switch (element){
       default: throw new Error("Given element '" + element + "' is undefined");
     }
-  }
-
-  public void clickText(String text){
-
   }
   // Overridable methods
   public void clicker(String element){
