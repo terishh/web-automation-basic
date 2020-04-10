@@ -8,7 +8,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SearchResultsPage extends BasePage {
+public class SearchResultsPage extends HomePageLoggedIn {
   // Constructor
   public SearchResultsPage(){
     addElement("resultsHeading", "app-search-result span[id*='searchValue']");

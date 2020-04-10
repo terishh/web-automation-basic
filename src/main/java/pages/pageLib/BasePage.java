@@ -57,7 +57,11 @@ public class BasePage {
       int maxTries = 3;
       while(true) {
         try {
-          return $(path);
+          if(path.contains("//")){
+            return $(byXpath(path));
+          }else {
+            return $(path);
+          }
         } catch (Error e) {
           if (++count == maxTries) throw new Error("Failed to get " + element);
         }
@@ -78,11 +82,9 @@ public class BasePage {
     getElement(capElement).sendKeys(value);
     info("Setting value of " + capElement + " to " + value);
   }
-
   public void validateText(String text){
     assertThat(isDisplayed(getTextElement(text), 10)).isTrue();
   }
-
   // Overridable methods
   public void navigate(String element){}
   public SelenideElement getMainElement(){

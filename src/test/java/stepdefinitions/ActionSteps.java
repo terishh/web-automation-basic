@@ -45,8 +45,8 @@ public class ActionSteps {
     PageManager.getCurrentPage().validateText(text);
   }
 
-  @When("I log in with the following data:")
-  public void iLogInWithTheFollowingData() {
-    //PageManager.getCurrentPage().
+  @When("I log in with following data:")
+  public void iLogInWithTheFollowingData(DataTable dataTable) {
+    // PageManager.getCurrentPage().
   }
 }

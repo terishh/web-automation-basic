@@ -4,7 +4,7 @@ Feature: Actions feature
     Given I navigate to "Home" page
     And   I click "Dismiss button"
 
-  @WIPx
+  @WIP
   Scenario: Search for banana
     When I search for "banana"
     And  I click text "Banana Juice (1000ml)"
@@ -13,7 +13,7 @@ Feature: Actions feature
       | Description  | Monkeys love it the most. |
       | Price        | 1.99                      |
 
-  @WIPx
+  @WIP
   Scenario: Create new Juice Shop user
     When I click "Account button"
     And  I click "Login button"
@@ -37,12 +37,20 @@ Feature: Actions feature
   #    | Email    | foo@bar.com  |
   #    | Password | easyPassword |
 
-  @WIP
+  @WIPx
   Scenario: Order an item
-    When I log in with the following data:
+    When I click "Account button"
+    And  I click "Login button"
+    Then I "log in" with following data:
       | Email    | demo |
       | Password | demo |
-    #And I add "Juice Shop Artwork" to the basket
+    When I search for "Juice Shop Artwork"
+    And  I click "Add to basket"
+    And  I click "Shopping cart button"
+    Then I see text "Juice Shop Artwork"
+    When I click "Checkout button"
+    Then I see text "Dummystreet 42, Mocktown, Testilvania, 12345"
+
     #And I choose delivery address "Dummystreet 42"
     #And I choose delivery option "Fast Delivery"
     #And I choose payment card "1234567812345678"

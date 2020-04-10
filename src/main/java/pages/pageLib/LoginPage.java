@@ -1,39 +1,44 @@
 package pages.pageLib;
 
 import com.codeborne.selenide.SelenideElement;
+import io.cucumber.datatable.DataTable;
 import pages.PageManager;
-
-import java.util.List;
 import java.util.Map;
 
 public class LoginPage extends BasePage {
   // Constructor
   public LoginPage(){
     addElement("emailField", "input[aria-label*='Text field for the login email']");
-    addElement("loginButton", "input[aria-label*='Text field for the login password']");
     addElement("passwordField", "input[aria-label*='Text field for the login password']");
+    addElement("loginButton", "button[aria-label*='Login");
     addElement("googleLoginButton", "button[aria-label*='Login with Google']");
     addElement("notYetACustomer", "div[id='newCustomerLink']");
   }
   // Methods
-  public void login(List<Map<String, String>> data) {
-    info("Logging in with following data " + data);
-    // emailField.sendKeys(data.get(0).get("Email"));
-    // passwordField.sendKeys(data.get(0).get("Password"));
-    // loginButton.click();
-    // PageManager.setCurrentPage(PageManager.HOME_PAGE_LOGGED_IN);
-    throw new Error("Login not implemented");
+  @Override
+  public void doAction(String action, DataTable dataTable) {
+    switch (capitalizeSecond(action)){
+      case "logIn": login(dataTable); break;
+      default     : super.doAction(action, dataTable);
+    }
   }
-  public SelenideElement getMainElement() {
-    return getElement("googleLoginButton");
-  }
-
   @Override
   public void navigate(String element) {
     switch (element){
-      case "notYetACustomer":
-        PageManager.setCurrentPage(PageManager.getRegistrationPage());
+      case "notYetACustomer": PageManager.setCurrentPage(PageManager.getRegistrationPage()); break;
+      default               : super.navigate(element);
     }
-    super.navigate(element);
+  }
+  public void login(DataTable dataTable){
+    Map<String,String> data = dataTable.transpose().asMaps().get(0);
+    info("Logging in with following data " + data);
+    getElement("emailField").sendKeys(data.get("Email"));
+    getElement("passwordField").sendKeys(data.get("Password"));
+    getElement("loginButton").click();
+
+    PageManager.setCurrentPage(PageManager.getHomePageLoggedIn());
+  }
+  public SelenideElement getMainElement() {
+    return getElement("googleLoginButton");
   }
 }
