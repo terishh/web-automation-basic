@@ -1,5 +1,7 @@
 package general;
 
+import pages.PageManager;
+
 import static com.codeborne.selenide.Selenide.open;
 
 public class Navigation {
@@ -20,10 +22,10 @@ public class Navigation {
   }
   public static void navigateToHomePage(){
     open(HOME_PAGE);
-    PageManager.setCurrentPage(PageManager.HOME_PAGE);
+    PageManager.setCurrentPage(PageManager.getHomePage());
   }
   public static void navigateToLoginPage(){
     open(LOGIN_PAGE);
-    PageManager.setCurrentPage(PageManager.LOGIN_PAGE);
+    PageManager.setCurrentPage(PageManager.getLoginPage());
   }
 }

@@ -1,16 +1,18 @@
-package pages;
+package pages.pageLib;
 
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.datatable.DataTable;
+import pages.pageLib.BasePage;
+
 import java.util.Map;
 
-import static com.codeborne.selenide.Selenide.$;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SearchResultsPage extends BasePage {
-  // Variables
-  private final static SelenideElement resultsHeading = $("app-search-result span[id*=\"searchValue\"]");
-  // private final static SelenideElement dialogBoxTitle = $("mat-dialog-container h1");
+  // Constructor
+  public SearchResultsPage(){
+    addElement("resultsHeading", "app-search-result span[id*='searchValue']");
+  }
   // Methods
   @Override
   public void doAction(String action, DataTable dataTable) {
@@ -33,6 +35,6 @@ public class SearchResultsPage extends BasePage {
     }
   }
   public SelenideElement getMainElement(){
-    return resultsHeading;
+    return getElement("resultsHeading");
   }
 }

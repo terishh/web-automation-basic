@@ -1,7 +1,7 @@
 package stepdefinitions;
 
 import cucumber.api.java.en.Then;
-import general.PageManager;
+import pages.PageManager;
 import io.cucumber.datatable.DataTable;
 
 public class ValidationSteps {

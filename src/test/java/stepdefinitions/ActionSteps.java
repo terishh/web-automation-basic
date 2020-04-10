@@ -2,8 +2,9 @@ package stepdefinitions;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import general.PageManager;
+import pages.PageManager;
 import io.cucumber.datatable.DataTable;
 
 import static general.Navigation.navigator;
@@ -32,5 +33,20 @@ public class ActionSteps {
   @And("I click text {string}")
   public void iClickText(String text) {
     PageManager.getCurrentPage().clickText(text);
+  }
+
+  @And("I set {string} to {string}")
+  public void iSetTo(String element, String value) {
+    PageManager.getCurrentPage().setValue(element, value);
+  }
+
+  @Then("I see text {string}")
+  public void iSeeText(String text) {
+    PageManager.getCurrentPage().validateText(text);
+  }
+
+  @When("I log in with the following data:")
+  public void iLogInWithTheFollowingData() {
+    //PageManager.getCurrentPage().
   }
 }
