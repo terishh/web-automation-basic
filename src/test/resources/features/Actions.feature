@@ -3,8 +3,8 @@ Feature: Actions feature
   Background:
     Given I navigate to "Home" page
     And   I click "Dismiss button"
+    And   I click "Me want it"
 
-  @WIP
   Scenario: Search for banana
     When I search for "banana"
     And  I click text "Banana Juice (1000ml)"
@@ -13,7 +13,6 @@ Feature: Actions feature
       | Description  | Monkeys love it the most. |
       | Price        | 1.99                      |
 
-  @WIP
   Scenario: Create new Juice Shop user
     When I click "Account button"
     And  I click "Login button"
@@ -27,17 +26,6 @@ Feature: Actions feature
     And  I click "Registration button"
     Then I see text "Registration completed successfully."
 
-
-  #  When I "create user" in "Registration" page with the following data:
-  #    | Email             | foo@bar.com                |
-  #    | Password          | easyPassword               |
-  #    | Security question | Name of your favorite pet? |
-  #    | Security answer   | Mushu                      |
-  #  Then I log in with the following data:
-  #    | Email    | foo@bar.com  |
-  #    | Password | easyPassword |
-
-  @WIPx
   Scenario: Order an item
     When I click "Account button"
     And  I click "Login button"
@@ -50,12 +38,14 @@ Feature: Actions feature
     Then I see text "Juice Shop Artwork"
     When I click "Checkout button"
     Then I see text "Dummystreet 42, Mocktown, Testilvania, 12345"
-
-    #And I choose delivery address "Dummystreet 42"
-    #And I choose delivery option "Fast Delivery"
-    #And I choose payment card "1234567812345678"
-    #And I checkout the order
-    #Then I see "track order" in "order completion" page with following data:
-    #  | Name      | Juice Shop Artwork |
-    #  | Price     | 278.74             |
-    #  | Delivered | false              |
+    When I click "Tim tester"
+    And  I click "Continue"
+    Then I see text "Choose a delivery speed"
+    When I click "Standard Delivery"
+    And  I click "Continue"
+    Then I see text "My Payment Options"
+    When I click "Tim tester"
+    And  I click "Continue"
+    Then I see text "Order Summary"
+    When I click "Place your order and pay"
+    Then I see text "Thank you for your purchase!"

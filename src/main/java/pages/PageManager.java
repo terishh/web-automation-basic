@@ -13,6 +13,8 @@ public class PageManager {
   private static BasketPage basketPage = new BasketPage();
   private static SelectAddressPage selectAddressPage = new SelectAddressPage();
   private static DeliveryPage deliveryPage = new DeliveryPage();
+  private static PaymentOptionsPage paymentOptionsPage = new PaymentOptionsPage();
+  private static OrderSummaryPage orderSummaryPage = new OrderSummaryPage();
   // Methods
   public static void setCurrentPage(BasePage page){
     currentPage = page;
@@ -45,5 +47,11 @@ public class PageManager {
   }
   public static DeliveryPage getDeliveryPage() {
     return deliveryPage;
+  }
+  public static PaymentOptionsPage getPaymentOptionsPage() {
+    return paymentOptionsPage;
+  }
+  public static OrderSummaryPage getOrderSummaryPage() {
+    return orderSummaryPage;
   }
 }

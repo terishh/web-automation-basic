@@ -83,6 +83,7 @@ public class BasePage {
     info("Setting value of " + capElement + " to " + value);
   }
   public void validateText(String text){
+    info("Validating: " + text);
     assertThat(isDisplayed(getTextElement(text), 10)).isTrue();
   }
   // Overridable methods
