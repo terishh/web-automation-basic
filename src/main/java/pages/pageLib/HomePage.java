@@ -3,9 +3,6 @@ package pages.pageLib;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
 import pages.PageManager;
-import pages.pageLib.BasePage;
-
-import static com.codeborne.selenide.Selenide.$;
 
 public class HomePage extends BasePage {
   // Constructor

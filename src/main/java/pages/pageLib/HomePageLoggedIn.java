@@ -3,9 +3,6 @@ package pages.pageLib;
 import com.codeborne.selenide.SelenideElement;
 import pages.PageManager;
 
-import java.util.List;
-import java.util.Map;
-
 public class HomePageLoggedIn extends HomePage {
   // Constructor
   public HomePageLoggedIn(){
@@ -17,13 +14,9 @@ public class HomePageLoggedIn extends HomePage {
     addElement("addToBasket", "button[aria-label='Add to Basket']");
   }
   // Methods
-  public Boolean validateUserProfileButton(List<Map<String,String>> data) {
-    return data.get(0).get("Email").equals(getElement("userProfileButton").text());
-  }
   public SelenideElement getMainElement(){
     return getElement("shoppingCartButton");
   }
-
   @Override
   public void navigate(String element) {
     switch (element){

@@ -2,8 +2,6 @@ package pages.pageLib;
 
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.datatable.DataTable;
-import pages.pageLib.BasePage;
-
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;

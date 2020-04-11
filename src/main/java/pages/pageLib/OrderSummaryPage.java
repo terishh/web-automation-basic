@@ -7,7 +7,7 @@ public class OrderSummaryPage extends PaymentOptionsPage {
   public OrderSummaryPage(){
     addElement("placeYourOrderAndPay", "button[aria-label='Complete your purchase']");
   }
-  // Method
+  // Methods
   @Override
   public SelenideElement getMainElement() {
     return getElement("placeYourOrderAndPay");
