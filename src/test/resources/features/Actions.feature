@@ -1,4 +1,4 @@
-Feature: Actions feature
+Feature: Basic Actions
 
   Background:
     Given I navigate to "Home" page
