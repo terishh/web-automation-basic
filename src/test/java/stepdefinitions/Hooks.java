@@ -37,7 +37,7 @@ public class Hooks {
       String line = "";
       while((line = br.readLine()) != null) {
         System.out.println(line);
-        if(line.contains("Server listening on port 3000")){ return; }
+        if(line.contains("listening")){ return; }
         if(line.toLowerCase().contains("warn")){ throw new Error("Failed to set up Juice Shop"); }
       }
     } catch (IOException e) {
