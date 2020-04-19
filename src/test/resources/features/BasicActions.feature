@@ -4,6 +4,7 @@ Feature: Basic Actions
     Given I navigate to "Home" page
     And   I click "Dismiss button"
     And   I click "Me want it"
+    And   I click "Snackbar button"
 
   Scenario: Search for banana
     When I search for "banana"
