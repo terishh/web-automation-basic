@@ -20,7 +20,11 @@ public class HomePageLoggedIn extends HomePage {
   @Override
   public void navigate(String element) {
     switch (element){
-      case "shoppingCartButton": PageManager.setCurrentPage(PageManager.getBasketPage()); break;
+      case "shoppingCartButton":
+        if(isDisplayed(getElement("snackbarButton"), 2)){
+          getElement("snackbarButton").click();
+        }
+        PageManager.setCurrentPage(PageManager.getBasketPage()); break;
       default: super.navigate(element);
     }
   }
