@@ -6,6 +6,7 @@ Feature: Basic Actions
     And   I click "Me want it"
     And   I click "Snackbar button"
 
+
   Scenario: Search for banana
     When I search for "banana"
     And  I click text "Banana Juice (1000ml)"
@@ -14,7 +15,7 @@ Feature: Basic Actions
       | Description  | Monkeys love it the most. |
       | Price        | 1.99                      |
 
-  #@WIP
+  @WIP
   Scenario: Create new Juice Shop user
     When I click "Account button"
     And  I click "Login button"
@@ -28,7 +29,7 @@ Feature: Basic Actions
     And  I click "Registration button"
     Then I see text "Registration completed successfully."
 
-  #@WIP
+  @WIP
   Scenario: Order an item
     When I click "Account button"
     And  I click "Login button"
@@ -74,3 +75,49 @@ Feature: Basic Actions
     | Language | Example 1              | Example 2                | Example 3   | 
     | Deutsch  | Bestellungen & Zahlung | Datenschutz & Sicherheit | Abmelden    |
     |  Česky   | Objednávky & Platby    | Soukromí & Bezpečnost    | Odhlásit se |
+
+  @WIP @NOT_IMPLEMENTED @NEED_NEW_PAGE
+  Scenario: Change password
+    When I click "Account button"
+    And  I click "Login button"
+    Then I "log in" with following data:
+      | Email    | demo |
+      | Password | demo |
+    When I click "Account button"
+    And  I click "Privacy & Security button"
+    And  I click "Change password"
+    And  I set "Current Password field" to "demo"
+    And  I set "New Password field" to "easyPassword123"
+    And  I set "Repeat New Password field" to "easyPassword123"
+    And  I click "Change"
+    Then I see text "Your password was successfully changed."
+    When I click "Account button"
+    And  I click "Logout"
+    And  I click "Account button"
+    And  I click "Login button"
+    Then I "log in" with following data:
+      | Email    | demo            |
+      | Password | easyPassword123 |
+
+  @WIP @NOT_IMPLEMENTED @NEED_NEW_PAGE
+  Scenario: Add new address
+    When I click "Account button"
+    And  I click "Login button"
+    Then I "log in" with following data:
+      | Email    | demo |
+      | Password | demo |
+    When I click "Add to basket"
+    And  I click "Checkout"
+    And  I click "Add new address"
+    And  I set "Country" to "Latvia"
+    And  I set "Name" to "Freeman"
+    And  I set "Mobile Number" to "+37120202020"
+    And  I set "ZIP code" to "LV-3201"
+    And  I set "Address" to "Random Address 25-395"
+    And  I set "City" to "Ventspils"
+    And  I set "State" to "RandomState"
+    And  I click "Submit"
+    Then I see "address" with following data:
+      | Name    | Freeman               |
+      | Address | Random Address 25-395 |
+      | Country | Latvia                |
