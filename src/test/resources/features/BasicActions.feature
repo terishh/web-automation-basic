@@ -14,6 +14,7 @@ Feature: Basic Actions
       | Description  | Monkeys love it the most. |
       | Price        | 1.99                      |
 
+  #@WIP
   Scenario: Create new Juice Shop user
     When I click "Account button"
     And  I click "Login button"
@@ -27,6 +28,7 @@ Feature: Basic Actions
     And  I click "Registration button"
     Then I see text "Registration completed successfully."
 
+  #@WIP
   Scenario: Order an item
     When I click "Account button"
     And  I click "Login button"
@@ -50,3 +52,25 @@ Feature: Basic Actions
     Then I see text "Order Summary"
     When I click "Place your order and pay"
     Then I see text "Thank you for your purchase!"
+
+  @WIP @NOT_IMPLEMENTED
+  Scenario Outline: Change language
+    When I click "Account button"
+    And  I click "Login button"
+    Then I "log in" with following data:
+      | Email    | demo |
+      | Password | demo |
+    When I click "Choose language button"
+    And  I click text "<Language>"
+    And  I click "Snackbar button"
+    And  I click "Account button"
+    Then I see "Account menu" with following data:
+      | Menu name          | Translation |
+      | Orders & Payment   | <Example 1> |
+      | Privacy & Security | <Example 2> |
+      | Logout             | <Example 3> |
+
+  Examples:
+    | Language | Example 1              | Example 2                | Example 3   | 
+    | Deutsch  | Bestellungen & Zahlung | Datenschutz & Sicherheit | Abmelden    |
+    |  Česky   | Objednávky & Platby    | Soukromí & Bezpečnost    | Odhlásit se |

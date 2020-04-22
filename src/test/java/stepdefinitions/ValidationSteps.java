@@ -14,4 +14,9 @@ public class ValidationSteps {
   public void iSeeWithFollowingData(String scope, DataTable dataTable) {
     PageManager.getCurrentPage().doAction("validate " + scope, dataTable);
   }
+
+  @Then("I see text {string}")
+  public void iSeeText(String text) {
+    PageManager.getCurrentPage().validateText(text);
+  }
 }

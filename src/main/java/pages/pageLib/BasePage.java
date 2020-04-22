@@ -13,11 +13,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BasePage {
   // Variables
-  private final Integer defaultTimeout = 5;
+  private final Integer defaultTimeout = 10;
   private final Logger logger = new Logger();
   private HashMap<String, String> elementCollection;
   // Constructor
-  public BasePage(){
+  public BasePage() {
     elementCollection = new HashMap<String, String>();
   }
   // General methods
@@ -30,18 +30,20 @@ public class BasePage {
   public void doAction(String action, DataTable dataTable) {
     throw new Error(action + " is undefined");
   }
-  public void doAction(String action, String data){
+  public void doAction(String action, String data) {
     throw new Error(action + " is undefined");
   }
   public void validatePage() {
     info("Validating page: " + this.getClass());
     assertThat(isDisplayed(getMainElement(), getTimeout())).isTrue();
   }
-  public void clickText(String text){
+  public void clickText(String text) {
     getTextElement(text).click();
   }
-  public Boolean isTextVisible(String text) { return getTextElement(text).isDisplayed(); }
-  public SelenideElement getTextElement(String text){
+  public Boolean isTextVisible(String text) {
+    return getTextElement(text).isDisplayed();
+  }
+  public SelenideElement getTextElement(String text) {
     return $(byXpath("//*[contains(text(), '" + text + "')]"));
   }
   public void addElement(String key, String path){
