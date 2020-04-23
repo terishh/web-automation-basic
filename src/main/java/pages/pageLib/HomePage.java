@@ -15,6 +15,8 @@ public class HomePage extends BasePage {
     addElement("dismissButton", "button[aria-label*='Close Welcome Banner']");
     addElement("meWantIt", "a[aria-label='dismiss cookie message']");
     addElement("snackbarButton", "simple-snack-bar button");
+    addElement("changePassword", "button[aria-label='Go to change password page']");
+    addElement("chooseLanguageButton", "button[aria-label='Language selection menu']");
   }
   // Methods
   @Override
