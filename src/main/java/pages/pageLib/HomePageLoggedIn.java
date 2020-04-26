@@ -16,7 +16,7 @@ public class HomePageLoggedIn extends HomePage {
     addElement("ordersPaymentButton", "button[aria-label='Show Orders and Payment Menu']");
     addElement("privacySecurityButton", "button[aria-label='Show Privacy and Security Menu']");
     addElement("addToBasket", "button[aria-label='Add to Basket']");
-
+    addElement("changePassword", "button[aria-label='Go to change password page']");
   }
   // Methods
   public SelenideElement getMainElement(){
@@ -39,7 +39,7 @@ public class HomePageLoggedIn extends HomePage {
   public void doAction(String action, DataTable dataTable) {
     switch(capitalizeSecond(action)){
       case "validateAccountMenu": validateAccountMenu(dataTable); break;
-      default         : super.doAction(action, dataTable);
+      default: super.doAction(action, dataTable);
     }
   }
 

@@ -2,11 +2,10 @@ package pages.pageLib;
 
 import com.codeborne.selenide.SelenideElement;
 
-public class ChangePasswordPage extends HomePageLoggedIn {
+public class ChangePasswordPage extends BasePage {
   //Constructor
   public ChangePasswordPage() {
     addElement("title", "//h1[contains(., 'Change Password')]");
-    addElement("currentPasswordField", "input[aria-label='Field to enter the current password']");
   }
   @Override
   public SelenideElement getMainElement() {
