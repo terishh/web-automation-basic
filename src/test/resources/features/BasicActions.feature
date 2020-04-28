@@ -6,6 +6,7 @@ Feature: Basic Actions
     And   I click "Me want it"
     And   I click "Snackbar button"
 
+  @WIP
   Scenario: Search for banana
     When I search for "banana"
     And  I click text "Banana Juice (1000ml)"
@@ -14,6 +15,7 @@ Feature: Basic Actions
       | Description  | Monkeys love it the most. |
       | Price        | 1.99                      |
 
+  @WIP
   Scenario: Create new Juice Shop user
     When I click "Account button"
     And  I click "Login button"
@@ -27,6 +29,7 @@ Feature: Basic Actions
     And  I click "Registration button"
     Then I see text "Registration completed successfully."
 
+  @WIP
   Scenario: Order an item
     When I click "Account button"
     And  I click "Login button"
@@ -51,6 +54,7 @@ Feature: Basic Actions
     When I click "Place your order and pay"
     Then I see text "Thank you for your purchase!"
 
+  @WIP
   Scenario Outline: Change language
     When I click "Account button"
     And  I click "Login button"
@@ -71,7 +75,7 @@ Feature: Basic Actions
     | Deutsch  | Bestellungen & Zahlung | Datenschutz & Sicherheit | Abmelden    |
     |  Česky   | Objednávky & Platby    | Soukromí & Bezpečnost    | Odhlásit se |
 
-  @WIP
+  @HOME_WORK @IMPLEMENT_THIS
   Scenario: Change password
     When I click "Account button"
     And  I click "Login button"
@@ -94,7 +98,7 @@ Feature: Basic Actions
       | Email    | demo            |
       | Password | easyPassword123 |
 
-  @WIP
+  @HOME_WORK @IMPLEMENT_THIS
   Scenario: Add new address
     When I click "Account button"
     And  I click "Login button"
