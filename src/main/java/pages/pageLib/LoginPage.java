@@ -1,5 +1,4 @@
 package pages.pageLib;
-
 import com.codeborne.selenide.SelenideElement;
 import io.cucumber.datatable.DataTable;
 import pages.PageManager;
@@ -41,4 +40,5 @@ public class LoginPage extends BasePage {
   public SelenideElement getMainElement() {
     return getElement("googleLoginButton");
   }
+  
 }
